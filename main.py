@@ -1,5 +1,7 @@
 import streamlit as st
-from langchain import PromptTemplate
+#from langchain import PromptTemplate
+from langchain_core.prompts import PromptTemplate
+from langchain.schema import HumanMessage
 from langchain_openai import OpenAI
 from langchain_groq import ChatGroq
 
@@ -119,7 +121,8 @@ if draft_input:
         dialect=option_dialect, 
         draft=draft_input
     )
-
-    improved_redaction = llm(prompt_with_draft)
+    # added this line
+    messages = [HumanMessage(content=prompt_with_draft)]
+    improved_redaction = llm.invoke(messages)
 
     st.write(improved_redaction)
