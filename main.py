@@ -125,4 +125,5 @@ if draft_input:
     messages = [HumanMessage(content=prompt_with_draft)]
     improved_redaction = llm.invoke(messages)
 
-    st.write(improved_redaction)
+    #st.write(improved_redaction)
+    st.write(improved_redaction.content)
